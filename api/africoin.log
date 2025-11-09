@@ -1,0 +1,463 @@
+2025-11-07 08:44:56,592 - Africoin - INFO - Mining block 0 with difficulty 4
+2025-11-07 08:45:01,053 - Africoin - INFO - Block 0 mined! Hash: 000016ee7aa56212f4c24c8ba8bb99177a29c2e70d937385c78a63431ec41751, Nonce: 85606, Time: 4.45s, Hash Rate: 19242 H/s
+2025-11-07 08:45:01,502 - Africoin - INFO - Block 0 added to blockchain
+2025-11-07 08:45:01,503 - Africoin - INFO - Genesis block created and mined
+2025-11-07 08:45:01,566 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 08:45:03,754 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.46:5000
+2025-11-07 08:45:03,756 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-07 08:45:03,942 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 08:46:54,537 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 08:46:55,436 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.46:5000
+2025-11-07 08:46:55,438 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-07 08:46:55,483 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 08:46:58,776 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 08:46:58,892 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 08:46:59,282 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 08:49:17,356 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:49:17] "[33mGET / HTTP/1.1[0m" 404 -
+2025-11-07 08:49:17,408 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:49:17] "[33mGET / HTTP/1.1[0m" 404 -
+2025-11-07 08:49:22,955 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:49:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-07 08:49:22,965 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:49:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-07 08:50:27,041 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:27] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:50:29,121 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:29] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 08:50:34,118 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:34] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:50:43,753 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:43] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:50:43,806 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:43] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:50:45,787 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:45] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 08:50:48,845 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:48] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:50:56,075 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:56] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 08:50:58,018 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:50:58] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:03,435 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:03] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:14,364 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:14] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:23,166 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:23] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:23,404 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:23] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:25,215 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:25] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 08:51:27,498 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:27] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:37,351 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:37] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:47,355 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:47] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:51:58,333 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:51:58] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:52:07,666 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:52:07] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:52:18,346 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:52:18] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:52:28,333 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:52:28] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:52:38,323 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:52:38] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:52:48,915 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:52:48] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:53:07,341 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:53:07] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:53:17,325 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:53:17] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:53:27,457 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:53:27] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:53:37,322 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:53:37] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:53:47,341 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:53:47] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:53:57,327 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:53:57] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:54:07,347 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:54:07] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:55:00,357 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:55:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:56:00,347 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:56:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:57:00,374 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:57:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:58:01,092 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:58:01] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 08:59:00,347 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 08:59:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:07,265 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:07] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:09,325 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:09] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:13,789 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:13] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:15,849 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:15] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:00:16,760 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:16] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:19,976 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:19] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:27,029 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:27] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:29,085 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:29] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:00:29,973 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:29] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:31,553 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:31] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:00:35,880 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:35] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:00:47,889 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:00:47] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:02:42,216 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:02:42] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:02:44,278 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:02:44] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:02:46,730 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:02:46] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:02:49,045 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:02:49] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:02:51,242 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:02:51] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:09:07,687 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:07] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:09:09,736 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:09] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:09:12,138 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:12] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:09:21,840 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:21] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:09:31,875 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:31] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:09:42,330 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:42] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:09:52,782 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:09:52] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:10:02,346 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:10:02] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:10:12,354 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:10:12] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:10:15,244 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\web\\dashboard.py', reloading
+2025-11-07 09:10:25,457 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 09:10:58,329 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 09:10:59,655 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 09:11:00,034 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 09:11:35,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\web\\dashboard.py', reloading
+2025-11-07 09:11:37,155 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 09:11:41,913 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 09:11:42,576 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 09:11:42,600 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 09:12:19,638 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\web\\dashboard.py', reloading
+2025-11-07 09:12:20,844 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 09:12:24,839 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 09:12:25,132 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 09:12:25,145 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 09:12:46,958 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:12:46] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:12:48,994 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:12:48] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:12:51,354 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:12:51] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:13:01,329 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:13:01] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:13:11,359 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:13:11] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:13:21,365 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:13:21] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:13:31,330 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:13:31] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:13:41,349 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:13:41] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:13:51,390 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:13:51] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:14:01,341 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:14:01] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:14:11,578 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:14:11] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:14:21,472 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:14:21] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:14:31,381 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:14:31] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:14:41,354 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:14:41] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:15:00,360 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:15:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:16:00,338 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:16:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:17:00,473 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:17:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:17:02,526 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:17:02] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:17:02,779 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:17:02] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:17:04,563 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:17:04] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:17:06,307 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:17:06] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:17:10,046 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:17:10] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:18:34,822 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:18:34] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:18:36,859 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:18:36] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:19:22,404 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:19:22] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:19:25,536 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:19:25] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:19:59,874 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:19:59] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:20:01,894 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:20:01] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:22:05,924 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:22:05] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:22:08,537 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:22:08] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:27:51,028 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:27:51] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:28:04,606 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:28:04] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:29:05,271 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:29:05] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:29:07,397 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:29:07] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:30:04,555 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:30:04] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:30:07,502 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:30:07] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:30:28,831 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:30:28] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:30:31,649 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:30:31] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:32:45,455 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:32:45] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:32:48,157 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:32:48] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:33:13,426 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:33:13] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:33:15,496 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:33:15] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:33:17,806 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:33:17] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:34:13,718 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:34:13] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:34:16,343 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:34:16] "[33mGET /api/blockchain/blocks?limit=10 HTTP/1.1[0m" 404 -
+2025-11-07 09:34:18,596 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:34:18] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:34:20,652 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:34:20] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:35:46,745 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:35:46] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:35:51,080 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:35:51] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:36:22,354 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:36:22] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:36:24,403 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:36:24] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:37:59,150 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:37:59] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:38:01,456 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:38:01] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:41:57,712 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:41:57] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:41:59,786 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:41:59] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:42:08,184 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:42:08] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:44:38,448 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:44:38] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:44:40,491 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:44:40] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:44:51,111 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:44:51] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:45:07,820 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:45:07] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:45:09,853 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:45:09] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:47:08,316 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:47:08] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:48:10,149 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:48:10] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:48:12,250 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:48:12] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:49:35,701 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:49:35] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:49:37,749 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:49:37] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:49:42,520 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:49:42] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:52:33,378 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:52:33] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:53:25,722 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:53:25] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:55:04,327 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:55:04] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:55:06,471 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:55:06] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:55:15,732 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:55:15] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 09:56:40,362 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:56:40] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 09:56:42,478 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:56:42] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 09:56:58,681 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 09:56:58] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 10:00:16,303 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:00:16] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 10:00:18,341 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:00:18] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 10:01:27,597 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:01:27] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 10:06:04,631 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:06:04] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 10:06:07,427 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:06:07] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 10:06:19,267 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:06:19] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 10:13:47,781 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:13:47] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 10:13:50,068 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:13:50] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 10:13:58,838 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:13:58] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-07 10:24:32,249 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:24:32] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 10:24:34,531 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:24:34] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 10:29:49,954 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:29:49] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 10:29:52,575 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:29:52] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 10:30:41,667 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:30:41] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-07 10:30:44,016 - werkzeug - INFO - 127.0.0.1 - - [07/Nov/2025 10:30:44] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-07 10:36:37,898 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\core\\routes.py', reloading
+2025-11-07 10:37:02,124 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 10:37:47,885 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 10:37:49,105 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 10:37:49,496 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 10:40:05,910 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\__init__.py', reloading
+2025-11-07 10:40:07,821 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 10:41:12,967 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 10:41:15,799 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 10:41:15,850 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 10:45:23,985 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\config\\settings.py', reloading
+2025-11-07 10:45:28,763 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 10:45:52,345 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 10:45:52,737 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 10:45:52,752 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 10:46:43,544 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\core\\models.py', reloading
+2025-11-07 10:46:43,968 - werkzeug - INFO -  * Restarting with stat
+2025-11-07 10:46:57,083 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-07 10:46:57,287 - werkzeug - WARNING -  * Debugger is active!
+2025-11-07 10:46:57,301 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-07 10:47:11,696 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\core\\__init__.py', reloading
+2025-11-07 10:47:12,515 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 18:56:08,969 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 18:56:09,491 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:5000
+2025-11-09 18:56:09,493 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 18:56:09,498 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 18:56:12,771 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 18:56:12,885 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 18:56:12,896 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 18:56:37,687 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:56:37] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 18:56:39,762 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:56:39] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 18:56:57,830 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:56:57] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 18:56:59,851 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 18:56:59] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 18:57:32,474 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\core\\__init__.py', reloading
+2025-11-09 18:57:32,963 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 18:57:49,971 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 18:57:50,510 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 18:57:50,521 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 18:59:51,710 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\api\\app.py', reloading
+2025-11-09 18:59:52,740 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 18:59:57,410 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 18:59:57,547 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 18:59:57,553 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:00:29,166 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\api\\app.py', reloading
+2025-11-09 19:00:29,667 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:00:32,558 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:00:32,620 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:00:32,643 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:00:58,247 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:00:58] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:01:00,307 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:01:00] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:01:27,527 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\api\\app.py', reloading
+2025-11-09 19:01:28,207 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:01:44,399 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:01:44,766 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:01:44,776 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:03:03,722 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:03] "[33mGET /docs HTTP/1.1[0m" 404 -
+2025-11-09 19:03:05,107 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-09 19:03:20,339 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\api\\app.py', reloading
+2025-11-09 19:03:20,731 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:03:24,371 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:03:24,448 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:03:24,470 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:03:36,623 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:36] "[33mGET /africoin/docs HTTP/1.1[0m" 404 -
+2025-11-09 19:03:44,261 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:44] "[32mGET /api/docs HTTP/1.1[0m" 308 -
+2025-11-09 19:03:49,730 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:49] "GET /api/docs/ HTTP/1.1" 200 -
+2025-11-09 19:03:51,120 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:51] "GET /swaggerui/droid-sans.css HTTP/1.1" 200 -
+2025-11-09 19:03:52,603 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:52] "GET /swaggerui/swagger-ui.css HTTP/1.1" 200 -
+2025-11-09 19:03:55,067 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:55] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 200 -
+2025-11-09 19:03:55,234 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:55] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+2025-11-09 19:03:56,618 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:56] "GET /swagger.json HTTP/1.1" 200 -
+2025-11-09 19:03:57,039 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:03:57] "GET /swaggerui/favicon-32x32.png HTTP/1.1" 200 -
+2025-11-09 19:04:58,005 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:04:58] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 19:06:03,095 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:03] "GET /api/docs/ HTTP/1.1" 200 -
+2025-11-09 19:06:05,677 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:05] "GET /swaggerui/droid-sans.css HTTP/1.1" 200 -
+2025-11-09 19:06:05,739 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:05] "GET /swaggerui/swagger-ui.css HTTP/1.1" 200 -
+2025-11-09 19:06:06,058 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:06] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 200 -
+2025-11-09 19:06:06,059 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:06] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+2025-11-09 19:06:07,113 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:07] "GET /swagger.json HTTP/1.1" 200 -
+2025-11-09 19:06:07,563 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:06:07] "GET /swaggerui/favicon-32x32.png HTTP/1.1" 200 -
+2025-11-09 19:08:27,709 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:08:27] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:08:29,750 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:08:29] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:08:46,714 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:08:46] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 19:09:03,870 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:09:03] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:09:05,905 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:09:05] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:10:23,939 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:10:23] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:10:26,042 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:10:26] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:11:04,792 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:11:04] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:11:06,833 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:11:06] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:11:30,470 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:11:30] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 19:11:46,227 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:11:46] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:11:48,264 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:11:48] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:12:18,292 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 19:12:19,720 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:12:47,326 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:12:48,452 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:12:48,462 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:13:08,294 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 19:13:08,813 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:13:12,854 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:13:12,966 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:13:12,978 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:14:19,923 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:14:19] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:14:22,017 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:14:22] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:23:48,905 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:23:48] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 19:31:18,997 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:31:18] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:31:22,569 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:31:22] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:35:31,447 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\security\\auth.py', reloading
+2025-11-09 19:36:05,225 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:36:55,049 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:36:55,275 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:36:55,302 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:37:45,862 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:37:45] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 19:38:24,067 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:38:24] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:38:26,099 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:38:26] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:40:31,963 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:40:31] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:40:33,995 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:40:33] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:49:26,806 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 19:50:31,071 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:53:02,299 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:53:06,368 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:53:06,778 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 19:54:37,175 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:54:37] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 19:54:39,230 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 19:54:39] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 19:58:33,761 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 19:58:58,831 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 19:59:44,689 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 19:59:45,641 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 19:59:45,793 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:03:20,853 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:03:40,931 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:04:52,580 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:04:54,065 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:04:54,470 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:05:14,788 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:05:15,511 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:05:27,196 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:05:27,348 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:05:27,359 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:08:16,455 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:08:18,342 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:09:01,032 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:09:02,134 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:09:02,145 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:09:44,679 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:09:45,757 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:10:04,881 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:10:05,024 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:10:05,034 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:11:02,218 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:11:03,832 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:11:40,050 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:11:40,439 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:11:40,455 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:11:45,774 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:11:46,877 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:12:23,416 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:12:23,854 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:12:23,873 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:13:35,065 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:13:37,026 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:14:33,251 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:14:33,340 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:14:33,350 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:19:03,204 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:03] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:19:05,345 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:05] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:19:27,344 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:27] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:19:29,386 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:29] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:19:33,844 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:33] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 20:19:42,943 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:42] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:19:44,988 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:19:44] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:20:49,331 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:20:49] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:20:51,362 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:20:51] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:24:12,391 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:24:12] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:24:14,412 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:24:14] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:25:15,647 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:25:15] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:25:17,704 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:25:17] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:32:36,538 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:33:03,482 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:36:33,323 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:36:33,946 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:36:33,957 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:41:20,126 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 20:41:38,550 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 20:43:08,908 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 20:43:09,069 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 20:43:09,083 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 20:48:46,437 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:48:46] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:48:48,509 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:48:48] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:49:16,425 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:49:16] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:49:18,555 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:49:18] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:49:28,593 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:49:28] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 20:49:44,258 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:49:44] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:49:46,294 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:49:46] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:50:04,733 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:50:04] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:50:06,783 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:50:06] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:50:32,925 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:50:32] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 20:53:00,187 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:53:00] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:53:02,235 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:53:02] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:54:54,185 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:54:54] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:54:56,200 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:54:56] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:55:10,741 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:55:10] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:55:12,767 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:55:12] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:57:05,298 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:05] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:57:07,575 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:07] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:57:17,186 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:17] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:57:19,231 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:19] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:57:26,373 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:26] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 20:57:45,727 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:45] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:57:47,773 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:57:47] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:58:03,824 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:58:03] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:58:05,917 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:58:05] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 20:58:42,094 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:58:42] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 20:58:44,122 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 20:58:44] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 21:02:37,706 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 21:02:42,000 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.158.174.113:5000
+2025-11-09 21:02:42,002 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 21:02:42,082 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 21:02:55,805 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 21:02:55,986 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 21:02:56,716 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 21:03:14,352 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\api\\app.py', reloading
+2025-11-09 21:03:14,913 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 21:03:20,105 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 21:03:20,204 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 21:03:20,210 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 21:03:31,840 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:03:31] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 21:03:33,883 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:03:33] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 21:04:13,090 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:04:13] "[33mGET /api/blockchain/blocks?limit=50 HTTP/1.1[0m" 404 -
+2025-11-09 21:04:22,901 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:04:22] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 21:04:24,961 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:04:24] "[33mGET /api/blockchain/blocks?limit=5 HTTP/1.1[0m" 404 -
+2025-11-09 21:07:00,952 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 21:07:02,731 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://100.158.174.113:5000
+2025-11-09 21:07:02,734 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-09 21:07:02,740 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 21:07:20,341 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 21:07:20,444 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 21:07:20,457 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 21:07:20,979 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:20] "[33mGET /api/blockchain/status HTTP/1.1[0m" 404 -
+2025-11-09 21:07:22,790 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-09 21:07:45,611 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:45] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 21:07:46,984 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:46] "GET /blockchain/status?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-11-09 21:07:46,985 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:46] "GET /blockchain/status?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-11-09 21:07:47,804 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:47] "GET /blockchain/status?__debugger__=yes&cmd=resource&f=console.png&s=7K1WkEsIvY1WFxsZh2zc HTTP/1.1" 200 -
+2025-11-09 21:07:48,466 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:07:48] "GET /blockchain/status?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-11-09 21:08:38,156 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Gideon Kangunza\\Desktop\\africoin\\dashboard.py', reloading
+2025-11-09 21:08:40,221 - werkzeug - INFO -  * Restarting with stat
+2025-11-09 21:08:55,164 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-09 21:08:55,245 - werkzeug - WARNING -  * Debugger is active!
+2025-11-09 21:08:55,289 - werkzeug - INFO -  * Debugger PIN: 104-183-072
+2025-11-09 21:09:03,631 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:09:03] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 21:09:05,702 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:09:05] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-09 21:09:31,235 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:09:31] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-09 21:53:24,941 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:53:24] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 21:53:27,013 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:53:27] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-09 21:54:50,147 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:54:50] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-09 21:55:19,652 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:55:19] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 21:55:21,879 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:55:21] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-09 21:58:50,859 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:58:50] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 21:58:53,027 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 21:58:53] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-09 22:04:45,868 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:04:45] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 22:04:48,003 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:04:48] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-09 22:06:20,688 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:06:20] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-09 22:06:22,781 - werkzeug - INFO - 127.0.0.1 - - [09/Nov/2025 22:06:22] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -

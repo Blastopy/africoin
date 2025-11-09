@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions Explorer - Africoin</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E8B57;
+            --primary-dark: #1E6B47;
+            --primary-light: #3CA76D;
+            --secondary: #FFD700;
+            --secondary-dark: #E6C200;
+            --accent: #FF6B35;
+            --dark: #0f1419;
+            --darker: #0A0F14;
+            --gray: #1E2328;
+            --gray-light: #2A2F34;
+            --light: #FFFFFF;
+            --text: #E8E6E3;
+            --text-secondary: #A8A6A3;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(14, 20, 27, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .nav-brand h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-1px);
+        }
+        
+        .nav-links a.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 139, 87, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.1);
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Page Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Stats Overview */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--gray);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 968px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chart-container {
+            background: var(--gray);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            min-height: 300px;
+        }
+        
+        .chart-wrapper {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .chart-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Filters and Search */
+        .filters-section {
+            background: var(--gray);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .filter-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .filter-input, .filter-select {
+            background: var(--dark);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .action-btn {
+            background: var(--gray);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: left;
+        }
+        
+        .action-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .action-content {
+            flex: 1;
+        }
+        
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .action-description {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        /* Transactions Table */
+        .transactions-table-container {
+            background: var(--gray);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .table-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .search-box {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--light);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            min-width: 300px;
+            font-size: 0.9rem;
+        }
+        
+        .search-box::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+        
+        th {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--secondary);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+        
+        tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        
+        .tx-hash {
+            font-family: 'Courier New', monospace;
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .tx-hash:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        .address {
+            font-family: 'Courier New', monospace;
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+        
+        .address:hover {
+            color: var(--secondary);
+        }
+        
+        .amount {
+            font-weight: 600;
+        }
+        
+        .amount.positive {
+            color: var(--success);
+        }
+        
+        .amount.negative {
+            color: var(--danger);
+        }
+        
+        .fee {
+            color: var(--warning);
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-confirmed {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+        
+        .status-pending {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+        
+        .status-failed {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+        
+        .confirmations {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .block-number {
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .block-number:hover {
+            text-decoration: underline;
+        }
+        
+        .timestamp {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .pagination-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .pagination-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .pagination-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-1px);
+        }
+        
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-btn.active {
+            background: var(--primary);
+            color: var(--light);
+        }
+        
+        /* Loading States */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1rem 0;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        /* Transaction Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .modal-content {
+            background: var(--gray);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--danger);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .transaction-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .detail-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: var(--text);
+            font-size: 1rem;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .inputs-outputs {
+            margin-top: 2rem;
+        }
+        
+        .io-section {
+            margin-bottom: 2rem;
+        }
+        
+        .io-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .io-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .io-address {
+            font-family: 'Courier New', monospace;
+            color: var(--text);
+        }
+        
+        .io-amount {
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-wrapper {
+                height: 200px;
+            }
+            
+            th, td {
+                padding: 0.75rem 1rem;
+            }
+            
+            .transaction-detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--gray);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1>🌍 Africoin Explorer</h1>
+        </div>
+        <div class="nav-links">
+            <a href="/"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="/blocks"><i class="fas fa-cube"></i> Blocks</a>
+            <a href="/transactions" class="active"><i class="fas fa-exchange-alt"></i> Transactions</a>
+            <a href="/wallet"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="/mining"><i class="fas fa-digging"></i> Mining</a>
+            <a href="/contracts"><i class="fas fa-file-contract"></i> Contracts</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn btn-secondary" onclick="refreshTransactions()">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Transactions Explorer</h1>
+            <div class="btn-group">
+                <button class="btn" onclick="exportTransactions()">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-value" id="totalTransactions">2.1M</div>
+                <div class="stat-label">Total Transactions</div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> 12.4% growth
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="transactions24h">45.2K</div>
+                <div class="stat-label">Transactions (24h)</div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> 8.2% increase
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgFee">0.0012 AFC</div>
+                <div class="stat-label">Average Fee</div>
+                <div class="stat-trend trend-down">
+                    <i class="fas fa-arrow-down"></i> 15% lower
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalVolume">1.2B AFC</div>
+                <div class="stat-label">Total Volume</div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i> 24.7% increase
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Transaction Volume</h3>
+                    <div class="chart-actions">
+                        <select class="btn btn-secondary" id="volumeTimeRange" onchange="updateVolumeChart()">
+                            <option value="24h">24H</option>
+                            <option value="7d">7D</option>
+                            <option value="30d">30D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="volumeChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Transaction Fees</h3>
+                    <div class="chart-actions">
+                        <select class="btn btn-secondary" id="feesTimeRange" onchange="updateFeesChart()">
+                            <option value="24h">24H</option>
+                            <option value="7d">7D</option>
+                            <option value="30d">30D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="feesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="action-btn" onclick="filterByStatus('pending')">
+                <div class="action-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Pending Transactions</div>
+                    <div class="action-description" id="pendingCount">1,247 pending</div>
+                </div>
+            </button>
+            
+            <button class="action-btn" onclick="filterByType('large')">
+                <div class="action-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Large Transactions</div>
+                    <div class="action-description">> 1,000 AFC</div>
+                </div>
+            </button>
+            
+            <button class="action-btn" onclick="filterByType('contract')">
+                <div class="action-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Smart Contracts</div>
+                    <div class="action-description">Contract executions</div>
+                </div>
+            </button>
+            
+            <button class="action-btn" onclick="showUnconfirmedTransactions()">
+                <div class="action-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Unconfirmed</div>
+                    <div class="action-description">0 confirmations</div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Time Range</label>
+                    <select class="filter-select" id="timeFilter" onchange="filterTransactions()">
+                        <option value="all">All Time</option>
+                        <option value="1h">Last Hour</option>
+                        <option value="24h">Last 24 Hours</option>
+                        <option value="7d">Last 7 Days</option>
+                        <option value="30d">Last 30 Days</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select class="filter-select" id="statusFilter" onchange="filterTransactions()">
+                        <option value="all">All Status</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Amount Range (AFC)</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="number" class="filter-input" id="minAmount" placeholder="Min" min="0" step="0.00000001" onchange="filterTransactions()">
+                        <input type="number" class="filter-input" id="maxAmount" placeholder="Max" min="0" step="0.00000001" onchange="filterTransactions()">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">&nbsp;</label>
+                    <button class="btn btn-secondary" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Clear Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="transactions-table-container">
+            <div class="table-header">
+                <h2>Recent Transactions</h2>
+                <input type="text" class="search-box" id="searchTransaction" placeholder="Search by TX hash, address, or block..." onkeyup="searchTransactions()">
+            </div>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction Hash</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Amount</th>
+                            <th>Fee</th>
+                            <th>Status</th>
+                            <th>Block</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTableBody">
+                        <!-- Transactions will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <div class="pagination-info" id="paginationInfo">
+                    Showing 1-15 of 2,100,000 transactions
+                </div>
+                <div class="pagination-controls" id="paginationControls">
+                    <!-- Pagination buttons will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Detail Modal -->
+    <div class="modal" id="transactionDetailModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTransactionDetail()">&times;</button>
+            <h2 class="modal-title">Transaction Details</h2>
+            <div id="transactionDetailContent">
+                <!-- Transaction details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart instances and data
+        let volumeChart, feesChart;
+        let currentPage = 1;
+        const transactionsPerPage = 15;
+        let allTransactions = [];
+        let filteredTransactions = [];
+
+        // Initialize transactions page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            loadTransactions();
+            startLiveUpdates();
+        });
+
+        // Initialize Charts
+        function initializeCharts() {
+            // Volume Chart
+            const volumeCtx = document.getElementById('volumeChart').getContext('2d');
+            volumeChart = new Chart(volumeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:59'],
+                    datasets: [{
+                        label: 'Transaction Volume (AFC)',
+                        data: [1250000, 1890000, 2850000, 3980000, 2560000, 3120000, 2850000],
+                        backgroundColor: 'rgba(46, 139, 87, 0.8)',
+                        borderColor: '#2E8B57',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#E8E6E3',
+                                font: { family: "'Inter', sans-serif" }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Volume: ${(context.parsed.y / 1000000).toFixed(2)}M AFC`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { 
+                                color: '#A8A6A3',
+                                callback: function(value) {
+                                    return (value / 1000000).toFixed(1) + 'M';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { color: '#A8A6A3' }
+                        }
+                    }
+                }
+            });
+
+            // Fees Chart
+            const feesCtx = document.getElementById('feesChart').getContext('2d');
+            feesChart = new Chart(feesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:59'],
+                    datasets: [{
+                        label: 'Average Fee (AFC)',
+                        data: [0.0015, 0.0018, 0.0012, 0.0011, 0.0013, 0.0016, 0.0014],
+                        borderColor: '#FFD700',
+                        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#FFD700',
+                        pointBorderColor: '#FFFFFF',
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#E8E6E3',
+                                font: { family: "'Inter', sans-serif" }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Fee: ${context.parsed.y} AFC`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0.001,
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { 
+                                color: '#A8A6A3',
+                                callback: function(value) {
+                                    return value + ' AFC';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { color: '#A8A6A3' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Load Transactions Data
+        function loadTransactions() {
+            showLoading();
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Generate mock transactions data
+                allTransactions = generateMockTransactions(1000);
+                filteredTransactions = [...allTransactions];
+                
+                displayTransactions();
+                updatePagination();
+                updatePendingCount();
+                hideLoading();
+            }, 1000);
+        }
+
+        function generateMockTransactions(count) {
+            const transactions = [];
+            const baseTimestamp = Date.now();
+            const statuses = ['confirmed', 'confirmed', 'confirmed', 'confirmed', 'pending'];
+            const types = ['transfer', 'transfer', 'transfer', 'contract', 'transfer'];
+            
+            for (let i = 0; i < count; i++) {
+                const status = statuses[Math.floor(Math.random() * statuses.length)];
+                const type = types[Math.floor(Math.random() * types.length)];
+                const amount = type === 'contract' ? 0 : Math.random() * 10000;
+                const fee = Math.random() * 0.01;
+                const confirmations = status === 'confirmed' ? Math.floor(Math.random() * 100) + 1 : 0;
+                
+                transactions.push({
+                    hash: '0x' + Math.random().toString(16).substr(2, 64),
+                    from: '1A1zP' + Math.random().toString(16).substr(2, 34),
+                    to: '1BvBM' + Math.random().toString(16).substr(2, 34),
+                    amount: amount,
+                    fee: fee,
+                    status: status,
+                    confirmations: confirmations,
+                    block: 12456 - Math.floor(i / 10),
+                    timestamp: baseTimestamp - (i * 60000), // 1 min intervals
+                    type: type
+                });
+            }
+            
+            return transactions;
+        }
+
+        function displayTransactions() {
+            const startIndex = (currentPage - 1) * transactionsPerPage;
+            const endIndex = startIndex + transactionsPerPage;
+            const pageTransactions = filteredTransactions.slice(startIndex, endIndex);
+            
+            const tbody = document.getElementById('transactionsTableBody');
+            
+            if (pageTransactions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                            No transactions found matching your criteria
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = pageTransactions.map(tx => `
+                <tr onclick="showTransactionDetail('${tx.hash}')" style="cursor: pointer;">
+                    <td>
+                        <a href="#" class="tx-hash" onclick="event.stopPropagation(); showTransactionDetail('${tx.hash}')">
+                            ${tx.hash.substring(0, 16)}...
+                        </a>
+                    </td>
+                    <td>
+                        <span class="address" title="${tx.from}">
+                            ${tx.from.substring(0, 12)}...
+                        </span>
+                    </td>
+                    <td>
+                        <span class="address" title="${tx.to}">
+                            ${tx.to.substring(0, 12)}...
+                        </span>
+                    </td>
+                    <td>
+                        <span class="amount ${tx.amount > 0 ? 'positive' : ''}">
+                            ${tx.amount > 0 ? '+' : ''}${tx.amount.toFixed(8)} AFC
+                        </span>
+                    </td>
+                    <td>
+                        <span class="fee">${tx.fee.toFixed(8)} AFC</span>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${tx.status}">
+                            ${tx.status.toUpperCase()}
+                        </span>
+                        ${tx.confirmations > 0 ? `<div class="confirmations">${tx.confirmations} confirmations</div>` : ''}
+                    </td>
+                    <td>
+                        <a href="/blocks" class="block-number" onclick="event.stopPropagation();">
+                            #${tx.block.toLocaleString()}
+                        </a>
+                    </td>
+                    <td>
+                        <span class="timestamp">${new Date(tx.timestamp).toLocaleString()}</span>
+                    </td>
+                </tr>
+            `).join('');
+            
+            updatePaginationInfo();
+        }
+
+        function updatePaginationInfo() {
+            const total = filteredTransactions.length;
+            const start = ((currentPage - 1) * transactionsPerPage) + 1;
+            const end = Math.min(start + transactionsPerPage - 1, total);
+            
+            document.getElementById('paginationInfo').textContent = 
+                `Showing ${start}-${end} of ${total.toLocaleString()} transactions`;
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredTransactions.length / transactionsPerPage);
+            const controls = document.getElementById('paginationControls');
+            
+            let html = '';
+            
+            // Previous button
+            html += `<button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">
+                <i class="fas fa-chevron-left"></i>
+            </button>`;
+            
+            // Page numbers
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, startPage + 4);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">
+                    ${i}
+                </button>`;
+            }
+            
+            // Next button
+            html += `<button class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">
+                <i class="fas fa-chevron-right"></i>
+            </button>`;
+            
+            controls.innerHTML = html;
+        }
+
+        function changePage(page) {
+            if (page < 1 || page > Math.ceil(filteredTransactions.length / transactionsPerPage)) return;
+            
+            currentPage = page;
+            displayTransactions();
+            updatePagination();
+            
+            // Scroll to top of table
+            document.querySelector('.transactions-table-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Filtering and Search
+        function filterTransactions() {
+            const timeFilter = document.getElementById('timeFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const minAmount = parseFloat(document.getElementById('minAmount').value) || 0;
+            const maxAmount = parseFloat(document.getElementById('maxAmount').value) || Infinity;
+            
+            filteredTransactions = allTransactions.filter(tx => {
+                // Time filter
+                if (timeFilter !== 'all') {
+                    const now = Date.now();
+                    const txTime = tx.timestamp;
+                    let timeLimit;
+                    
+                    switch(timeFilter) {
+                        case '1h': timeLimit = now - (60 * 60 * 1000); break;
+                        case '24h': timeLimit = now - (24 * 60 * 60 * 1000); break;
+                        case '7d': timeLimit = now - (7 * 24 * 60 * 60 * 1000); break;
+                        case '30d': timeLimit = now - (30 * 24 * 60 * 60 * 1000); break;
+                        default: timeLimit = 0;
+                    }
+                    
+                    if (txTime < timeLimit) return false;
+                }
+                
+                // Status filter
+                if (statusFilter !== 'all' && tx.status !== statusFilter) return false;
+                
+                // Amount range filter
+                if (tx.amount < minAmount || tx.amount > maxAmount) return false;
+                
+                return true;
+            });
+            
+            currentPage = 1;
+            displayTransactions();
+            updatePagination();
+        }
+
+        function searchTransactions() {
+            const searchTerm = document.getElementById('searchTransaction').value.toLowerCase();
+            
+            if (!searchTerm) {
+                filterTransactions();
+                return;
+            }
+            
+            filteredTransactions = allTransactions.filter(tx => 
+                tx.hash.toLowerCase().includes(searchTerm) ||
+                tx.from.toLowerCase().includes(searchTerm) ||
+                tx.to.toLowerCase().includes(searchTerm) ||
+                tx.block.toString().includes(searchTerm)
+            );
+            
+            currentPage = 1;
+            displayTransactions();
+            updatePagination();
+        }
+
+        function clearFilters() {
+            document.getElementById('timeFilter').value = 'all';
+            document.getElementById('statusFilter').value = 'all';
+            document.getElementById('minAmount').value = '';
+            document.getElementById('maxAmount').value = '';
+            document.getElementById('searchTransaction').value = '';
+            
+            filterTransactions();
+        }
+
+        // Quick Filter Functions
+        function filterByStatus(status) {
+            document.getElementById('statusFilter').value = status;
+            filterTransactions();
+        }
+
+        function filterByType(type) {
+            if (type === 'large') {
+                document.getElementById('minAmount').value = '1000';
+                document.getElementById('maxAmount').value = '';
+            } else if (type === 'contract') {
+                // This would filter for contract transactions
+                filteredTransactions = allTransactions.filter(tx => tx.type === 'contract');
+                currentPage = 1;
+                displayTransactions();
+                updatePagination();
+                return;
+            }
+            filterTransactions();
+        }
+
+        function showUnconfirmedTransactions() {
+            document.getElementById('statusFilter').value = 'pending';
+            document.getElementById('minAmount').value = '';
+            document.getElementById('maxAmount').value = '';
+            filterTransactions();
+        }
+
+        function updatePendingCount() {
+            const pendingCount = allTransactions.filter(tx => tx.status === 'pending').length;
+            document.getElementById('pendingCount').textContent = `${pendingCount.toLocaleString()} pending`;
+        }
+
+        // Transaction Detail Modal
+        function showTransactionDetail(hash) {
+            const tx = allTransactions.find(t => t.hash === hash);
+            if (!tx) return;
+            
+            const modal = document.getElementById('transactionDetailModal');
+            const content = document.getElementById('transactionDetailContent');
+            
+            content.innerHTML = `
+                <div class="transaction-detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Transaction Hash</span>
+                        <span class="detail-value">${tx.hash}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value">
+                            <span class="status-badge status-${tx.status}">
+                                ${tx.status.toUpperCase()}
+                            </span>
+                            ${tx.confirmations > 0 ? `(${tx.confirmations} confirmations)` : ''}
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">From Address</span>
+                        <span class="detail-value">${tx.from}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">To Address</span>
+                        <span class="detail-value">${tx.to}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Amount</span>
+                        <span class="detail-value" style="color: var(--success); font-weight: 600;">
+                            ${tx.amount.toFixed(8)} AFC
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Transaction Fee</span>
+                        <span class="detail-value" style="color: var(--warning);">
+                            ${tx.fee.toFixed(8)} AFC
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Block</span>
+                        <span class="detail-value">#${tx.block.toLocaleString()}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Timestamp</span>
+                        <span class="detail-value">${new Date(tx.timestamp).toLocaleString()}</span>
+                    </div>
+                </div>
+                
+                <div class="inputs-outputs">
+                    <div class="io-section">
+                        <h3 class="io-title">Inputs</h3>
+                        <div class="io-item">
+                            <span class="io-address">${tx.from.substring(0, 20)}...</span>
+                            <span class="io-amount">${(tx.amount + tx.fee).toFixed(8)} AFC</span>
+                        </div>
+                    </div>
+                    
+                    <div class="io-section">
+                        <h3 class="io-title">Outputs</h3>
+                        <div class="io-item">
+                            <span class="io-address">${tx.to.substring(0, 20)}...</span>
+                            <span class="io-amount">${tx.amount.toFixed(8)} AFC</span>
+                        </div>
+                        <div class="io-item">
+                            <span class="io-address">Fee</span>
+                            <span class="io-amount">${tx.fee.toFixed(8)} AFC</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="viewAddress('${tx.from}')">
+                        <i class="fas fa-user"></i> View Sender
+                    </button>
+                    <button class="btn" onclick="viewAddress('${tx.to}')">
+                        <i class="fas fa-user"></i> View Receiver
+                    </button>
+                    <button class="btn btn-secondary" onclick="copyTransactionHash('${tx.hash}')">
+                        <i class="fas fa-copy"></i> Copy Hash
+                    </button>
+                    <button class="btn btn-outline" onclick="viewBlock(${tx.block})">
+                        <i class="fas fa-cube"></i> View Block
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeTransactionDetail() {
+            document.getElementById('transactionDetailModal').style.display = 'none';
+        }
+
+        function copyTransactionHash(hash) {
+            navigator.clipboard.writeText(hash).then(() => {
+                showNotification('Transaction hash copied to clipboard!', 'success');
+            });
+        }
+
+        function viewAddress(address) {
+            // Navigate to address page or show address details
+            showNotification(`Viewing address: ${address.substring(0, 12)}...`, 'info');
+        }
+
+        function viewBlock(blockNumber) {
+            window.location.href = `/blocks#block-${blockNumber}`;
+        }
+
+        // Utility Functions
+        function refreshTransactions() {
+            const btn = document.querySelector('.btn-secondary');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                loadTransactions();
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+                showNotification('Transactions data refreshed!', 'success');
+            }, 1500);
+        }
+
+        function exportTransactions() {
+            // Simple export functionality
+            const data = filteredTransactions.map(tx => ({
+                Hash: tx.hash,
+                From: tx.from,
+                To: tx.to,
+                Amount: tx.amount,
+                Fee: tx.fee,
+                Status: tx.status,
+                Confirmations: tx.confirmations,
+                Block: tx.block,
+                Timestamp: new Date(tx.timestamp).toISOString()
+            }));
+            
+            const csv = convertToCSV(data);
+            downloadCSV(csv, 'africoin-transactions.csv');
+            showNotification('Transactions data exported!', 'success');
+        }
+
+        function convertToCSV(data) {
+            const headers = Object.keys(data[0]);
+            const csv = [headers.join(',')];
+            
+            data.forEach(row => {
+                const values = headers.map(header => {
+                    const value = row[header];
+                    return `"${value}"`;
+                });
+                csv.push(values.join(','));
+            });
+            
+            return csv.join('\n');
+        }
+
+        function downloadCSV(csv, filename) {
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        function showLoading() {
+            document.getElementById('transactionsTableBody').innerHTML = `
+                <tr>
+                    <td colspan="8">
+                        <div class="loading">
+                            <i class="fas fa-spinner loading-spinner"></i>
+                            <div>Loading transactions...</div>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function hideLoading() {
+            // Loading state is cleared by displayTransactions()
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                color: white;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                background: ${type === 'success' ? 'var(--success)' : 'var(--primary)'};
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Live Updates
+        function startLiveUpdates() {
+            // Simulate new transactions every 10 seconds
+            setInterval(() => {
+                const newTx = generateMockTransactions(1)[0];
+                allTransactions.unshift(newTx);
+                filteredTransactions.unshift(newTx);
+                
+                // Update stats
+                document.getElementById('transactions24h').textContent = 
+                    (parseInt(document.getElementById('transactions24h').textContent.replace('K', '000').replace('.', '')) + 1).toLocaleString();
+                
+                // Refresh display if on first page
+                if (currentPage === 1) {
+                    displayTransactions();
+                }
+                
+                updatePendingCount();
+                
+                if (newTx.status === 'pending') {
+                    showNotification(`New pending transaction: ${newTx.hash.substring(0, 16)}...`, 'info');
+                }
+            }, 10000);
+        }
+
+        // Chart Updates
+        function updateVolumeChart() {
+            // In a real implementation, this would fetch new data based on time range
+            showNotification('Volume chart updated!', 'info');
+        }
+
+        function updateFeesChart() {
+            // In a real implementation, this would fetch new data based on time range
+            showNotification('Fees chart updated!', 'info');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('transactionDetailModal');
+            if (event.target === modal) {
+                closeTransactionDetail();
+            }
+        });
+
+        // Add CSS animation for notification
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
