@@ -118,26 +118,12 @@ def transactions_page():
     """Transactions page"""
     return render_template('transactions.html')
 
-@app.route('/wallet')
-def wallet_page():
-    """Wallet management page"""
-    return render_template('wallet.html')
 
 @app.route('/mining')
 def mining_page():
     """Mining dashboard page"""
     return render_template('mining.html')
 
-@app.route('/contracts')
-def contracts_page():
-    """Smart contracts page"""
-    return render_template('contracts.html')
-
-# @app.route('/profile')
-# @login_required
-# def profile_page():
-#     """Smart profile page"""
-#     return render_template('profile.html', user=current_user)
 
 # @app.route('/api/dashboard/stats')
 # def api_dashboard_stats():
@@ -204,7 +190,7 @@ def login():
             db.session.commit()
             
             next_page = request.args.get('next')
-            if not next_page or url_parse(next_page).netloc != '':
+            if not next_page or urlparse(next_page).netloc != '':
                 next_page = url_for('dashboard')
             flash('Login successful!', 'success')
             return redirect(next_page)

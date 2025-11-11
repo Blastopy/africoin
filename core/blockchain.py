@@ -565,6 +565,19 @@ class AfricoinBlockchain:
     async def handle_get_blocks_message(self, message: Dict, writer: asyncio.StreamWriter):
         """Handle block sync requests"""
         pass  # Implement block synchronization logic
+
+    def get_network_hashrate(self):
+        blockchain_info = self._rpc_call("getblockchaininfo")
+        try:
+            if blockchain_info and 'difficulty' in blockchain_info:
+                difficulty = blockchain_info['difficulty']
+                # Hashrate = difficulty * 2^32 / block_time
+                block_time = 150  # 2.5 minutes for Africoin
+                hashrate_calculated = (difficulty * (2**32)) / block_time
+                return self._format_hashrate(hashrate_calculated)
+            
+        except Exception as e:
+            print(f"Error getting network hashrate: {e}")
     
     def load_blockchain(self):
         """Load blockchain from database"""

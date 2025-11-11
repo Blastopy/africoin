@@ -2,7 +2,7 @@ import hashlib
 import hmac
 import os
 import time
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 import jwt
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
@@ -70,7 +70,7 @@ class AdvancedSecurity:
     def decrypt_private_key(self, encrypted_key: str, password: str) -> Optional[str]:
         """Decrypt private key with password"""
         try:
-            data = base64.urlsafe_b64decode(encoded_key.encode())
+            data = base64.urlsafe_b64decode(encrypted_key.encode())
             salt = data[:32]
             encrypted = data[32:]
             

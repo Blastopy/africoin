@@ -293,3 +293,29 @@ class AuditLog(db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
+class BlockchainStats(db.Model):
+    __tablename__ = 'blockchain_stats'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    block_height = db.Column(db.Integer, nullable=False)
+    network_hash_rate = db.Column(db.String(50))
+    difficulty = db.Column(db.String(50))
+    total_transactions = db.Column(db.BigInteger)
+    total_volume_afc = db.Column(db.Float)
+    active_nodes = db.Column(db.Integer)
+    block_time_seconds = db.Column(db.Float)
+    last_updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'block_height': self.block_height,
+            'network_hash_rate': self.network_hash_rate,
+            'difficulty': self.difficulty,
+            'total_transactions': self.total_transactions,
+            'total_volume_afc': self.total_volume_afc,
+            'active_nodes': self.active_nodes,
+            'block_time_seconds': self.block_time_seconds,
+            'last_updated': self.last_updated.isoformat()
+        }
