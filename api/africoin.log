@@ -844,3 +844,35 @@
 2025-11-10 22:48:33,597 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 22:48:33] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
 2025-11-10 22:48:43,102 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 22:48:43] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
 2025-11-10 22:48:45,139 - werkzeug - INFO - 127.0.0.1 - - [10/Nov/2025 22:48:45] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 08:23:11,810 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-11 08:23:13,360 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.88.251:5000
+2025-11-11 08:23:13,363 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-11-11 08:23:13,491 - werkzeug - INFO -  * Restarting with stat
+2025-11-11 08:23:15,086 - Africoin - INFO - Blockchain loaded with 1 blocks
+2025-11-11 08:23:15,129 - werkzeug - WARNING -  * Debugger is active!
+2025-11-11 08:23:15,193 - werkzeug - INFO -  * Debugger PIN: 126-310-961
+2025-11-11 08:24:29,526 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:24:29] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 08:26:19,752 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:26:19] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 08:26:23,644 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:26:23] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 08:26:25,716 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:26:25] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 08:27:21,784 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:27:21] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 08:27:23,825 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:27:23] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 08:27:42,043 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:27:42] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 08:30:01,822 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:30:01] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 08:30:48,673 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:30:48] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 08:30:50,709 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 08:30:50] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 09:20:15,967 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:20:15] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 09:20:18,016 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:20:18] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 09:21:27,324 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:21:27] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 09:21:28,459 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:21:28] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 09:21:32,097 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:21:32] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 09:21:34,133 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:21:34] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 09:22:02,093 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 09:22:02] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 10:08:38,806 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 10:08:38] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 10:08:41,040 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 10:08:41] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
+2025-11-11 10:09:08,646 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 10:09:08] "GET /blockchain/blocks?limit=50 HTTP/1.1" 200 -
+2025-11-11 10:09:22,226 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 10:09:22] "[35m[1mGET /blockchain/status HTTP/1.1[0m" 500 -
+2025-11-11 10:09:24,261 - werkzeug - INFO - 127.0.0.1 - - [11/Nov/2025 10:09:24] "GET /blockchain/blocks?limit=5 HTTP/1.1" 200 -
