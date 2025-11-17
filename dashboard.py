@@ -18,7 +18,7 @@ login_manager = LoginManager()
 
 
 def create_app():
-    app = Flask(__name__, template_folder='web/templates')
+    app = Flask(__name__, template_folder='web/templates', static_folder='web/static')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
     app.config['SECRET_KEY'] = 'Africoin2025bymainnet'
     db.init_app(app)
@@ -63,7 +63,7 @@ class AfricoinDashboard:
             
             self.cache['stats'] = stats
             self.last_update = time.time()
-            
+
             return stats
         except Exception as e:
             return {'error': str(e)}
@@ -202,14 +202,23 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    dashboard = AfricoinDashboard()
+    stats = dashboard.get_blockchain_stats()
+    recent_blocks = dashboard.get_recent_blocks(5)
+    network_info = dashboard.get_network_info()
+    
+   
     # Get user stats
     total_contracts = Contract.query.filter_by(user_id=current_user.id).count()
     active_contracts = Contract.query.filter_by(user_id=current_user.id, status='Active').count()
-    
-    return render_template('index.html', 
+    return render_template('index.html',
+                         stats=stats,
+                         recent_blocks=recent_blocks,
+                         network_info=network_info,
                          total_contracts=total_contracts,
                          active_contracts=active_contracts)
 
+    
 @app.route('/logout')
 @login_required
 def logout():
