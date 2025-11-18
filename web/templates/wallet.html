@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet - Africoin</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,6 +30,10 @@
             <button class="btn btn-secondary" onclick="refreshWallet()">
                 <i class="fas fa-sync-alt"></i> Refresh
             </button>
+            <a href="/profile"><button class="btn">
+                <i class="fas fa-user"></i> Account
+            </button>
+        </a>
         </div>
     </nav>
 
@@ -49,8 +54,8 @@
             <!-- Balance Card -->
             <div class="balance-card">
                 <div class="balance-label">Total Balance</div>
-                <div class="balance-amount" id="totalBalance">12.45678900 AFC</div>
-                <div class="balance-subtitle" id="balanceUsd">≈ $1,245.68 USD</div>
+                <div class="balance-amount" id="totalBalance">{{ current_user.balance }} AFC</div>
+                <div class="balance-subtitle" id="balanceUsd">≈ ${{ "%.2f"|format(current_user.balance * exchange_rate) }} USD</div>
                 <div class="balance-actions">
                     <button class="btn" onclick="switchTab('send')">
                         <i class="fas fa-paper-plane"></i> Send
@@ -71,7 +76,7 @@
                     <canvas id="addressQrCode"></canvas>
                 </div>
                 <div class="wallet-address" id="walletAddress">
-                    1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+                    {{ current_user.wallet_address }}
                 </div>
                 <div class="address-actions">
                     <button class="btn btn-small" onclick="copyAddress()">
@@ -151,7 +156,7 @@
                         
                         <div class="form-group">
                             <label class="form-label">From Address</label>
-                            <input type="text" class="form-input" id="sendFromAddress" value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" readonly>
+                            <input type="text" class="form-input" id="sendFromAddress" value="{{ current_user.wallet_address }}" readonly>
                         </div>
                         
                         <div class="form-group">
@@ -165,7 +170,7 @@
                             <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
                                 <button type="button" class="btn btn-small btn-secondary" onclick="setMaxAmount()">Max</button>
                                 <span style="color: var(--text-secondary); font-size: 0.8rem;">
-                                    Balance: <span id="availableBalance">12.45678900</span> AFC
+                                    Balance: <span id="availableBalance">{{ current_user.balance}}</span> AFC
                                 </span>
                             </div>
                         </div>
@@ -216,7 +221,7 @@
                         
                         <div class="form-group">
                             <label class="form-label">Your Address</label>
-                            <div class="wallet-address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</div>
+                            <div class="wallet-address">{{ current_user.wallet_address }}</div>
                         </div>
                         
                         <div class="form-group">
@@ -275,6 +280,7 @@
                 
                 <div class="transactions-list" id="walletTransactions">
                     <!-- Transactions will be populated here -->
+                     {{ current_user.transactions }}
                 </div>
             </div>
 
@@ -459,10 +465,10 @@ L4gB5fKc7H2qN8wV9xR3tY6uI1oP7aM0zX4vB6nC8mJ3kL9dF2hG5jH7
     <script>
         // Chart instances and wallet data
         let balanceChart, transactionChart;
-        let currentAddress = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
+        let currentAddress = document.getElementById('walletAddress').innerText.trim();
         let walletData = {
-            balance: 12.45678900,
-            usdValue: 1245.68,
+            balance: document.getElementById('totalBalance').innerText.trim().split(' ')[0],
+            usdValue: document.getElementById('balanceUsd').innerText.trim().split(' ')[1].replace(',', ''),
             transactions: []
         };
 
@@ -739,7 +745,7 @@ L4gB5fKc7H2qN8wV9xR3tY6uI1oP7aM0zX4vB6nC8mJ3kL9dF2hG5jH7
                     </button>
                 </div>
             `;
-        }
+            }
 
         function getSelectedFee() {
             const feeSelect = document.getElementById('sendFee');
@@ -750,11 +756,51 @@ L4gB5fKc7H2qN8wV9xR3tY6uI1oP7aM0zX4vB6nC8mJ3kL9dF2hG5jH7
         }
 
         function sendTransaction() {
+            function getCookie(name) {
+                return document.cookie
+                    .split("; ")
+                    .find(row => row.startsWith(name + "="))
+                    ?.split("=")[1];
+            }
+
+
             const toAddress = document.getElementById('sendToAddress').value;
             const amount = parseFloat(document.getElementById('sendAmount').value);
             const fee = getSelectedFee();
             const description = document.getElementById('sendDescription').value;
-            
+            const token = getCookie('authToken');
+            const payload = {
+                from_address: document.getElementById('sendFromAddress').value,
+                to_address: toAddress,
+                amount: amount,
+                fee: fee,
+                description: description || ''
+            };
+try{
+            const response = fetch("http://127.0.0.1:5000/wallet/send", {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(payload),
+            credentials: 'include'
+        }).then(response => response.json())
+        .then(data => console.log(data));
+            const result = response.json();
+            console.log(token);
+            if (response.ok) {
+            alert('Transaction sent! TX Hash: ' + result.tx_hash);
+        } else {
+            alert('Error: ' + result.error);
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert('Failed to send transaction.');
+    }
+    }
+                   
             // Simulate transaction sending
             showNotification('Transaction sent! Waiting for confirmation...', 'success');
             
@@ -779,7 +825,7 @@ L4gB5fKc7H2qN8wV9xR3tY6uI1oP7aM0zX4vB6nC8mJ3kL9dF2hG5jH7
             
             // Clear form
             clearSendForm();
-        }
+        
 
         function setMaxAmount() {
             const fee = getSelectedFee();

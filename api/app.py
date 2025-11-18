@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_restx import Api, Resource, fields
 from flask_cors import CORS
 from flask_limiter import Limiter
@@ -6,7 +6,7 @@ from flask_limiter.util import get_remote_address
 import jwt
 import datetime
 from functools import wraps
-
+import json
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -16,11 +16,14 @@ from core.smart_contracts import SmartContractEngine
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'africoin-secret-key-2024'
+app.config['SECRET_KEY'] = 'Africoin2025bymainnet'
 app.config['JSON_SORT_KEYS'] = False
 
 # Enable CORS
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+CORS(app,
+     resources={r"/*": {"origins": ["http://localhost:7070", "http://127.0.0.1:7070"]}},
+     supports_credentials=True)
 
 # Rate limiting
 limiter = Limiter(
@@ -34,7 +37,8 @@ api = Api(app,
           version='1.0', 
           title='Africoin API',
           description='Enterprise Blockchain Platform API',
-          doc='/api/docs/'
+          doc='/api/docs/',
+          serve_challenge_on_401=False
          )
 
 # Namespaces
@@ -52,6 +56,10 @@ contract_engine = SmartContractEngine()
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
+
+        if request.method == "OPTIONS":
+            return make_response("", 200)
+        
         token = request.headers.get('Authorization')
         
         if not token:
@@ -177,10 +185,10 @@ class CreateWallet(Resource):
     def post(self, current_user):
         """Create new wallet"""
         address = blockchain.wallet.generate_new_address()
-        return jsonify({
+        return {
             'address': address,
             'message': 'Wallet created successfully'
-        })
+        }
 
 @ns_wallet.route('/balance/<string:address>')
 class WalletBalance(Resource):
@@ -201,9 +209,13 @@ class WalletBalance(Resource):
             } for utxo in utxos[:10]]  # Limit to 10 UTXOs
         })
 
-@ns_wallet.route('/send')
+@ns_wallet.route('/send', methods=['POST', 'OPTIONS'])
 class SendTransaction(Resource):
     @api.doc('send_transaction')
+    
+    def options(self):
+        return {}, 200
+    
     @api.expect(transaction_model)
     @token_required
     def post(self, current_user):
@@ -223,11 +235,11 @@ class SendTransaction(Resource):
             # Broadcast to network
             blockchain.network.broadcast_transaction(transaction)
             
-            return jsonify({
+            return {
                 'success': True,
                 'tx_hash': transaction.tx_hash,
                 'message': 'Transaction created and broadcasted'
-            })
+            }
         else:
             return jsonify({
                 'success': False,
@@ -332,6 +344,21 @@ class LockFunds(Resource):
             return jsonify(result)
         except Exception as e:
             return jsonify({'error': str(e)}), 400
+
+@app.after_request
+def add_cors_headers(response):
+    origin = request.headers.get("Origin")
+    allowed = ["http://localhost:7070", "http://127.0.0.1:7070"]
+
+    if origin in allowed:
+        response.headers["Access-Control-Allow-Origin"] = origin
+
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    return response
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

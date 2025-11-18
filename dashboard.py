@@ -1,17 +1,19 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for, flash
+from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, make_response
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
 import secrets
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from models import Contract, Transaction
 import threading
 import time
 from web.data_entry import (RegistrationForms, LoginForm, UpdateProfileForm, ChangePasswordForm, PreferencesForm, ResetPasswordRequestForm, ResetPasswordForm)
 from web.extensions import db
 from models import User
+from urllib.parse import urlparse
+import jwt
 
 
 login_manager = LoginManager()
@@ -188,12 +190,35 @@ def login():
             login_user(user, remember=form.remember.data)
             user.last_login = datetime.utcnow()
             db.session.commit()
-            
+
+            token = jwt.encode(
+            {
+                "user_id": user.id,
+                "exp": datetime.utcnow() + timedelta(hours=5)
+            },
+                app.config['SECRET_KEY'],
+                algorithm="HS256"
+            )
+
+            # resp = make_response(jsonify({"message": "Login successful"}))
+            resp = redirect('/dashboard')
+    # Save token as cookie
+            resp.set_cookie(
+                "authToken",
+                token,
+                max_age=5 * 60 * 60,     # 5 hours
+                httponly=False,          # frontend JS needs to read it
+                secure=False,            # set True if using HTTPS
+                samesite="Lax"
+            )
+            return resp
             next_page = request.args.get('next')
             if not next_page or urlparse(next_page).netloc != '':
                 next_page = url_for('dashboard')
-            flash('Login successful!', 'success')
-            return redirect(next_page)
+
+            return redirect('/dashboard')
+            # flash('Login successful!', 'success')
+            # return redirect(next_page)
         else:
             flash('Login unsuccessful. Please check email/username and password.', 'danger')
     
@@ -246,13 +271,21 @@ def profile():
         {'date': datetime.utcnow(), 'type': 'received', 'amount': 1.5, 'status': 'confirmed'},
         {'date': datetime.utcnow(), 'type': 'sent', 'amount': 0.5, 'status': 'confirmed'}
     ]
-    
+
+    usd_url = 'https://api.frankfurter.app/latest?from=USD'
+    r = requests.get(usd_url)
+    usdData = r.json()
+    exchange_rate = usdData['rates']['ZAR']
+
+    transactions = Transaction.query.filter_by(user_id=current_user.id).order_by(Transaction.created_at.desc()).limit(10).all()
+
     return render_template('profile.html', 
-                         form=form, 
+                         form=form,
+                         transactions=transactions,
                          password_form=password_form,
                          preferences_form=preferences_form,
                          recent_transactions=recent_transactions,
-                         exchange_rate=0.25)  # Mock exchange rate
+                         exchange_rate=exchange_rate)  # Mock exchange rate
 
 @app.route('/update_profile', methods=['POST'])
 @login_required
@@ -332,8 +365,12 @@ def contracts():
 @app.route('/wallet')
 @login_required
 def wallet():
+    usd_url = 'https://api.frankfurter.app/latest?from=USD'
+    r = requests.get(usd_url)
+    usdData = r.json()
+    exchange_rate = usdData['rates']['ZAR']
     transactions = Transaction.query.filter_by(user_id=current_user.id).order_by(Transaction.created_at.desc()).limit(10).all()
-    return render_template('wallet.html', transactions=transactions)
+    return render_template('wallet.html', transactions=transactions, exchange_rate=exchange_rate)
 
 # API endpoints
 @app.route('/api/dashboard_stats')
