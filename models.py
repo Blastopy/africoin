@@ -4,6 +4,8 @@ from web.extensions import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 import json
+from sqlalchemy.orm import relationship
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -16,7 +18,8 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.String(20), nullable=False)
     country = db.Column(db.String(2), nullable=False)  # ISO country code
     password_hash = db.Column(db.String(128), nullable=False)
-    wallet_address = db.Column(db.String(42), unique=True, nullable=False, index=True)
+    wallet_address = db.Column(db.String(255), unique=True, nullable=False)
+    api_user_id = db.Column(db.String(100), unique=True)  # Store API user ID
     balance = db.Column(db.Float, default=0.0)
     is_verified = db.Column(db.Boolean, default=False)
     is_active = db.Column(db.Boolean, default=True)
@@ -31,9 +34,12 @@ class User(UserMixin, db.Model):
     sms_notifications = db.Column(db.Boolean, default=False)
     
     # Relationships
+    wallets = db.relationship('Wallet', backref='owner', lazy=True)
     contracts = db.relationship('Contract', backref='owner', lazy='dynamic', cascade='all, delete-orphan')
     transactions = db.relationship('Transaction', backref='user', lazy='dynamic', cascade='all, delete-orphan')
     password_reset_tokens = db.relationship('PasswordResetToken', backref='user', lazy='dynamic', cascade='all, delete-orphan')
+    wallets = relationship("Wallet", back_populates="user")
+
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -59,6 +65,23 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
+class Wallet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    address = db.Column(db.String(255), unique=True, nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    encrypted_private_key = db.Column(db.Text)  # Store encrypted private key
+    public_key = db.Column(db.String(255))      # Store public key
+    balance = db.Column(db.Float, default=0.0)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    user = relationship("User", back_populates="wallets")
+
+    def __repr__(self):
+        return f'<Wallet {self.address} - {self.name}>'
+    
 class Contract(db.Model):
     __tablename__ = 'contracts'
     

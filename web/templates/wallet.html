@@ -433,6 +433,30 @@
             <h2 class="modal-title">Create New Wallet</h2>
             <div id="createWalletContent">
                 <!-- Create wallet content will be populated here -->
+                 <!-- Add this to your index.html -->
+<div id="setup-flow">
+    <!-- Step 1: Initialize -->
+    <div id="step-init" class="step">
+        <h3>Step 1: Initialize Wallet System</h3>
+        <p>You need to set up a master password to secure your wallets</p>
+        <button onclick="initializeWallet()">Initialize Wallet System</button>
+    </div>
+    
+    <!-- Step 2: Create/Import Wallet -->
+    <div id="step-wallet" class="step hidden">
+        <h3>Step 2: Add a Wallet</h3>
+        <p>Create a new wallet or import an existing one</p>
+        <button onclick="createNewWallet()">Create New Wallet</button>
+        <button onclick="importExistingWallet()">Import Existing Wallet</button>
+    </div>
+    
+    <!-- Step 3: Ready to Transact -->
+    <div id="step-ready" class="step hidden">
+        <h3>Ready to Send Transactions!</h3>
+        <p>Your wallets are set up and ready to use</p>
+        <div id="current-wallets"></div>
+    </div>
+</div>
             </div>
         </div>
     </div>
@@ -1059,6 +1083,94 @@ try{
                 event.target.style.display = 'none';
             }
         });
+
+        // In your frontend JavaScript
+async function createNewWallet() {
+    try {
+        const walletName = prompt("Enter wallet name:", "My Africoin Wallet");
+        if (!walletName) return;
+
+        const response = await fetch('http://localhost:5000/wallet/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: walletName })
+        });
+
+        const data = await response.json();
+        
+        if (data.success) {
+            alert(`New wallet created!\nAddress: ${data.address}`);
+            // Auto-fill the from address in your send form
+            document.getElementById('from-address').value = data.address;
+            loadAddresses(); // Refresh the addresses list
+        } else {
+            alert('Error creating wallet: ' + data.error);
+        }
+    } catch (error) {
+        alert('Network error: ' + error.message);
+    }
+}
+
+async function loadAddresses() {
+    try {
+        const response = await fetch('http://localhost:5000/wallet/addresses');
+        const data = await response.json();
+        
+        if (data.success) {
+            const addressesList = document.getElementById('addresses-list');
+            addressesList.innerHTML = '';
+            
+            data.addresses.forEach(address => {
+                const addressElement = document.createElement('div');
+                addressElement.className = 'address-item';
+                addressElement.innerHTML = `
+                    <strong>${address}</strong>
+                    <button onclick="useAddress('${address}')">Use This Address</button>
+                `;
+                addressesList.appendChild(addressElement);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading addresses:', error);
+    }
+}
+
+function useAddress(address) {
+    document.getElementById('from-address').value = address;
+}
+async function importExistingWallet() {
+    try {
+        const privateKey = prompt("Enter your private key:");
+        if (!privateKey) return;
+
+        const walletName = prompt("Enter wallet name:", "Imported Wallet");
+        
+        const response = await fetch('http://localhost:5000/wallet/import', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                private_key: privateKey,
+                name: walletName 
+            })
+        });
+
+        const data = await response.json();
+        
+        if (data.success) {
+            alert(`Wallet imported successfully!\nAddress: ${data.address}`);
+            document.getElementById('from-address').value = data.address;
+            loadAddresses();
+        } else {
+            alert('Error importing wallet: ' + data.error);
+        }
+    } catch (error) {
+        alert('Network error: ' + error.message);
+    }
+}
     </script>
 </body>
 </html>

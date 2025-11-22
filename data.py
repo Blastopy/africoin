@@ -61,6 +61,7 @@ def load_table():
     for row in results:
         tree.insert("", tk.END, values=[row[col] for col in columns])
 
+
 # Load button
 load_btn = tk.Button(root, text="Load Table", command=load_table)
 load_btn.pack(pady=10)

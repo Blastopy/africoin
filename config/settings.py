@@ -48,6 +48,10 @@ class AfricoinConfig:
     # Session settings
     PERMANENT_SESSION_LIFETIME = timedelta(days=7)
     
+    WALLET_API_URL = os.environ.get('WALLET_API_URL', 'http://localhost:5000')
+    WALLET_API_KEY = os.environ.get('WALLET_API_KEY', 'your_internal_api_key_456')
+    WALLET_MASTER_PASSWORD = os.environ.get('WALLET_MASTER_PASSWORD', 'default_master_password_123')
+    
     # Email settings
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', 587))

@@ -9,15 +9,39 @@ from functools import wraps
 import json
 import sys
 import os
+import logging
+from wallet_manager import WalletManager
+from transaction_handler import TransactionHandler
+from flask_sqlalchemy import SQLAlchemy
+from flask import current_app
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from core.blockchain import AfricoinBlockchain
 from core.smart_contracts import SmartContractEngine
+from web.extensions import db
+from models import User
 
 # Initialize Flask app
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Africoin2025bymainnet'
 app.config['JSON_SORT_KEYS'] = False
+
+def create_app():
+    app = Flask(__name__, template_folder='web/templates', static_folder='web/static')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/users.db'
+    app.config['SECRET_KEY'] = 'Africoin2025bymainnet'
+    db.init_app(app)
+
+
+
+    with app.app_context():
+        db.create_all()
+
+    return app
+
+app = create_app()
 
 # Enable CORS
 
@@ -41,6 +65,12 @@ api = Api(app,
           serve_challenge_on_401=False
          )
 
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+
 # Namespaces
 ns_blockchain = api.namespace('blockchain', description='Blockchain operations')
 ns_wallet = api.namespace('wallet', description='Wallet operations')
@@ -51,6 +81,11 @@ ns_bridge = api.namespace('bridge', description='Cross-chain operations')
 # Initialize blockchain
 blockchain = AfricoinBlockchain()
 contract_engine = SmartContractEngine()
+
+# Initialize managers
+wallet_manager = WalletManager()
+transaction_handler = TransactionHandler(wallet_manager)
+
 
 # Authentication decorator
 def token_required(f):
@@ -89,6 +124,287 @@ contract_model = api.model('Contract', {
     'parameters': fields.Raw(required=True),
     'gas_limit': fields.Integer(default=1000000)
 })
+
+
+
+# wallet ops
+
+@app.route('/wallet/init', methods=['POST'])
+def initialize_wallet_system():
+    """Initialize wallet system with master password"""
+    try:
+        data = request.get_json()
+        password = data.get('password')
+        
+        if not password:
+            return jsonify({
+                'success': False,
+                'error': 'Password is required'
+            }), 400
+        
+        if wallet_manager.initialize_wallet_system(password):
+            return jsonify({
+                'success': True,
+                'message': 'Wallet system initialized successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Failed to initialize wallet system'
+            }), 500
+            
+    except Exception as e:
+        app.logger.error(f"Wallet initialization error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Internal server error during wallet initialization'
+        }), 500
+
+@app.route('/wallet/load', methods=['POST'])
+def load_wallet_system():
+    """Load existing wallet system"""
+    try:
+        data = request.get_json()
+        password = data.get('password')
+        
+        if not password:
+            return jsonify({
+                'success': False,
+                'error': 'Password is required'
+            }), 400
+        
+        if wallet_manager.load_wallet_system(password):
+            return jsonify({
+                'success': True,
+                'message': 'Wallet system loaded successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Failed to load wallet system - check password'
+            }), 401
+            
+    except Exception as e:
+        app.logger.error(f"Wallet load error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Internal server error during wallet load'
+        }), 500
+
+@app.route('/wallet/create', methods=['POST'])
+def create_wallet():
+    """Create a new wallet"""
+    try:
+        data = request.get_json()
+
+        wallet_name = data.get('name', 'My Africoin Wallet')
+        
+        address = wallet_manager.create_wallet(wallet_name)
+        
+        if address:
+            return jsonify({
+                'success': True,
+                'address': address,
+                'message': 'Wallet created successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Failed to create wallet'
+            }), 500
+            
+    except Exception as e:
+        app.logger.error(f"Wallet creation error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Internal server error during wallet creation'
+        }), 500
+
+@app.route('/wallet/import', methods=['POST'])
+def import_wallet():
+    """Import wallet from private key"""
+    try:
+        data = request.get_json()
+        private_key = data.get('private_key')
+        wallet_name = data.get('name', 'Imported Wallet')
+        
+        if not private_key:
+            return jsonify({
+                'success': False,
+                'error': 'Private key is required'
+            }), 400
+        
+        address = wallet_manager.import_wallet(private_key, wallet_name)
+        
+        if address:
+            return jsonify({
+                'success': True,
+                'address': address,
+                'message': 'Wallet imported successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Failed to import wallet'
+            }), 500
+            
+    except Exception as e:
+        app.logger.error(f"Wallet import error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Internal server error during wallet import'
+        }), 500
+
+@app.route('/wallet/send', methods=['POST'])
+def send_transaction():
+    """Send transaction with comprehensive error handling"""
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        required_fields = ['from_address', 'to_address', 'amount']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    'success': False,
+                    'error': f'Missing required field: {field}'
+                }), 400
+        
+        result = transaction_handler.send_transaction(
+            data['from_address'],
+            data['to_address'],
+            float(data['amount'])
+        )
+        
+        if result['success']:
+            return jsonify(result)
+        else:
+            return jsonify(result), 400
+            
+    except Exception as e:
+        app.logger.error(f"Transaction error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Internal server error during transaction',
+            'message': 'Please try again later'
+        }), 500
+
+@app.route('/wallet/addresses', methods=['GET'])
+def list_addresses():
+    """List all wallet addresses"""
+    try:
+        addresses = wallet_manager.list_wallets()
+        return jsonify({
+            'success': True,
+            'addresses': addresses
+        })
+    except Exception as e:
+        app.logger.error(f"Address list error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Failed to retrieve wallet addresses'
+        }), 500
+
+@app.route('/wallet/status', methods=['GET'])
+def wallet_status():
+    """Check wallet system status"""
+    try:
+        addresses = wallet_manager.list_wallets()
+        return jsonify({
+            'success': True,
+            'is_initialized': wallet_manager.fernet is not None,
+            'wallet_count': len(addresses),
+            'addresses': addresses
+        })
+    except Exception as e:
+        app.logger.error(f"Status check error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Failed to check wallet status'
+        }), 500
+
+@app.route('/wallet/debug', methods=['GET'])
+def debug_wallets():
+    """Debug endpoint to see all wallets"""
+    try:
+        # Check if wallet system is loaded
+        if not wallet_manager.fernet:
+            return jsonify({
+                'success': False,
+                'error': 'Wallet system not loaded. Call /wallet/init first.'
+            }), 400
+        
+        # List all wallets
+        wallets = wallet_manager.list_wallets()
+        wallet_details = {}
+        
+        for address in wallets:
+            wallet_info = wallet_manager.get_wallet_info(address)
+            if wallet_info:
+                wallet_details[address] = {
+                    'name': wallet_info.get('name'),
+                    'has_private_key': wallet_info.get('encrypted_private_key') is not None,
+                    'balance': wallet_info.get('balance', 0)
+                }
+        
+        return jsonify({
+            'success': True,
+            'total_wallets': len(wallets),
+            'wallets': wallets,
+            'wallet_details': wallet_details,
+            'looking_for': 'AFC8b2a32e70aaae08b9f426ed471bab4884d05d007',
+            'found': 'AFC8b2a32e70aaae08b9f426ed471bab4884d05d007' in wallets
+        })
+        
+    except Exception as e:
+        app.logger.error(f"Debug error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/wallet/check-address/<address>', methods=['GET'])
+def check_specific_address(address):
+    """Check if a specific address exists and is accessible"""
+    try:
+        if not wallet_manager.fernet:
+            return jsonify({
+                'success': False,
+                'error': 'Wallet system not loaded'
+            }), 400
+        
+        # Check if address exists
+        wallets = wallet_manager.list_wallets()
+        exists = address in wallets
+        
+        if exists:
+            wallet_info = wallet_manager.get_wallet_info(address)
+            private_key_accessible = wallet_manager.get_private_key(address) is not None
+            
+            return jsonify({
+                'success': True,
+                'exists': True,
+                'accessible': private_key_accessible,
+                'wallet_info': {
+                    'name': wallet_info.get('name'),
+                    'balance': wallet_info.get('balance', 0),
+                    'has_encrypted_key': wallet_info.get('encrypted_private_key') is not None
+                }
+            })
+        else:
+            return jsonify({
+                'success': True,
+                'exists': False,
+                'accessible': False,
+                'message': f'Address {address} not found in wallet'
+            })
+            
+    except Exception as e:
+        app.logger.error(f"Address check error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
 # Blockchain Endpoints
 @ns_blockchain.route('/status')
@@ -345,6 +661,58 @@ class LockFunds(Resource):
         except Exception as e:
             return jsonify({'error': str(e)}), 400
 
+@app.route('/fix-wallet/<address>')
+def fix_specific_wallet(address):
+    """Fix a specific wallet that's causing issues"""
+    try:
+        from models import User, Wallet
+        
+        wallet_manager = WalletManager()
+        
+        # Initialize wallet system
+        master_password = current_app.config.get('WALLET_MASTER_PASSWORD', 'default_master_password_123')
+        if not wallet_manager.load_wallet_system(master_password):
+            return jsonify({'success': False, 'error': 'Failed to load wallet system'})
+        
+        # Check if wallet exists in wallet system
+        wallets = wallet_manager.list_wallets()
+        if address not in wallets:
+            return jsonify({'success': False, 'error': f'Wallet {address} not found in wallet system'})
+        
+        # Check if already in database
+        existing_wallet = Wallet.query.filter_by(address=address).first()
+        if existing_wallet:
+            return jsonify({'success': True, 'message': 'Wallet already exists in database', 'wallet': existing_wallet.address})
+        
+        # Find user by address
+        user = User.query.filter_by(wallet_address=address).first()
+        
+        # Get wallet info
+        wallet_info = wallet_manager.get_wallet_info(address)
+        
+        # Create wallet record
+        wallet = Wallet(
+            address=address,
+            name=wallet_info.get('name', 'Fixed Wallet'),
+            encrypted_private_key=None,
+            public_key=wallet_info.get('public_key', ''),
+            balance=wallet_info.get('balance', 0),
+            user_id=user.id if user else None,
+            is_active=True
+        )
+        
+        db.session.add(wallet)
+        db.session.commit()
+        
+        return jsonify({
+            'success': True,
+            'message': f'Wallet {address} synced successfully',
+            'user': user.username if user else 'orphan'
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+    
 @app.after_request
 def add_cors_headers(response):
     origin = request.headers.get("Origin")

@@ -14,6 +14,10 @@ from web.extensions import db
 from models import User
 from urllib.parse import urlparse
 import jwt
+import requests
+import logging
+from services.wallet_service import WalletService
+from api.wallet_manager import WalletManager
 
 
 login_manager = LoginManager()
@@ -151,27 +155,51 @@ def register():
     form = RegistrationForms()
     if form.validate_on_submit():
         # Generate wallet address
-        wallet_address = 'AFC' + secrets.token_hex(20)
-        
-        # Create user
-        user = User(
-            first_name=form.first_name.data,
-            last_name=form.last_name.data,
-            username=form.username.data,
-            email=form.email.data,
-            phone=form.phone.data,
-            country=form.country.data,
-            password_hash=generate_password_hash(form.password.data),
-            wallet_address=wallet_address,
-            created_at=datetime.utcnow()
-        )
-        
-        db.session.add(user)
-        db.session.commit()
-        
-        flash('Your account has been created! You can now log in.', 'success')
-        return redirect(url_for('login'))
-    
+        try:
+            wallet_manager = WalletManager()
+            wallet_service = WalletService()
+            # Call the wallet API to create a wallet
+            user_data = {
+                'first_name': form.first_name.data,
+                'last_name': form.last_name.data,
+                'username': form.username.data,
+                'email': form.email.data,
+                'wallet_name': f"{form.first_name.data} {form.last_name.data}'s Wallet"
+            }
+
+            api_result = wallet_service.create_wallet_for_user(user_data)
+            
+            if api_result['success']:
+                # Get the real wallet address from API
+                wallet_address = api_result['address']
+                api_user_id = f"user_{secrets.token_hex(8)}"
+
+                user = User(
+                    first_name=form.first_name.data,
+                    last_name=form.last_name.data,
+                    username=form.username.data,
+                    email=form.email.data,
+                    phone=form.phone.data,
+                    country=form.country.data,
+                    password_hash=generate_password_hash(form.password.data),
+                    wallet_address=wallet_address,
+                    api_user_id=api_user_id,
+                    created_at=datetime.utcnow()
+                )
+                db.session.add(user)
+                db.session.commit()
+                wallet_name = f"{form.first_name.data} {form.last_name.data}'s Wallet"
+                user = User.query.filter_by(email=form.email.data).first()
+                if user:
+                    wallet_manager.create_wallet(wallet_name, user.id)
+                flash('Your account has been created with a secure wallet! You can now log in.', 'success')
+                return redirect(url_for('login'))
+            else:
+                flash(f'Wallet creation failed: {api_result.get("error", "Unknown error")}', 'danger')
+                return render_template('register.html', form=form)
+        except Exception as e:
+            logging.error(f"Registration error: {str(e)}")
+            flash(f'An unexpected error occurred. Please try again.', 'danger')
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -230,10 +258,9 @@ def dashboard():
     dashboard = AfricoinDashboard()
     stats = dashboard.get_blockchain_stats()
     recent_blocks = dashboard.get_recent_blocks(5)
-    network_info = dashboard.get_network_info()
-    
-   
+    network_info = dashboard.get_network_info()   
     # Get user stats
+    # Get wallet balance from API
     total_contracts = Contract.query.filter_by(user_id=current_user.id).count()
     active_contracts = Contract.query.filter_by(user_id=current_user.id, status='Active').count()
     return render_template('index.html',
@@ -399,6 +426,81 @@ def internal_error(error):
 def forbidden_error(error):
     return render_template('403.html')
 
+@app.route('/admin/sync-wallets')
+def admin_sync_wallets():
+    """Sync wallets between wallet system and database"""
+    try:
+        from models import User
+        
+        db_wallet_service = DBWalletService()
+        wallet_service = WalletService()
+        
+        # Get all wallets from wallet system
+        wallets_response = wallet_service.get_all_wallets()
+        
+        if not wallets_response.get('success'):
+            return jsonify({'success': False, 'error': 'Could not get wallets from wallet system'})
+        
+        wallet_addresses = wallets_response.get('addresses', [])
+        results = []
+        
+        for address in wallet_addresses:
+            try:
+                # Check if wallet exists in database
+                db_result = db_wallet_service.get_wallet_by_address(address)
+                
+                if not db_result['success']:
+                    # Wallet doesn't exist in DB, find user by address
+                    user = User.query.filter_by(wallet_address=address).first()
+                    
+                    if user:
+                        # Create wallet record
+                        wallet_name = f"{user.first_name} {user.last_name}'s Wallet"
+                        create_result = db_wallet_service.create_wallet_record(
+                            user.id, address, wallet_name
+                        )
+                        
+                        if create_result['success']:
+                            results.append({
+                                'address': address,
+                                'action': 'created',
+                                'user': user.username
+                            })
+                        else:
+                            results.append({
+                                'address': address,
+                                'action': 'failed',
+                                'error': create_result.get('error')
+                            })
+                    else:
+                        results.append({
+                            'address': address,
+                            'action': 'skipped',
+                            'reason': 'No user found for this wallet'
+                        })
+                else:
+                    results.append({
+                        'address': address,
+                        'action': 'exists',
+                        'user': db_result['wallet']['owner_username']
+                    })
+                    
+            except Exception as e:
+                results.append({
+                    'address': address,
+                    'action': 'error',
+                    'error': str(e)
+                })
+        
+        return jsonify({
+            'success': True,
+            'message': f"Processed {len(wallet_addresses)} wallets",
+            'results': results
+        })
+        
+    except Exception as e:
+        logging.error(f"Wallet sync error: {str(e)}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7070, debug=True)
